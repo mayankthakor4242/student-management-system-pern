@@ -4,11 +4,13 @@ require("dotenv").config();
 
 const app = express();
 const pool = require("./config/db");
+const authRoutes=require("./routes/authRoutes");
 
 app.use(cors());
 app.use(express.json());
-console.log("Database:", process.env.DATABASE);
-console.log("Password:", process.env.PASSWORD);
+
+app.use("/api/auth",authRoutes);
+
 
 pool.query("SELECT NOW()", (error, result) => {
   if (error) {
