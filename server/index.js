@@ -5,11 +5,13 @@ require("dotenv").config();
 const app = express();
 const pool = require("./config/db");
 const authRoutes=require("./routes/authRoutes");
+const studentRoutes = require("./routes/studentRoutes");
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth",authRoutes);
+app.use("/api/students",studentRoutes);
 
 
 pool.query("SELECT NOW()", (error, result) => {
