@@ -12,13 +12,13 @@ const createStudent = async (studentData)=>{
         semester,
     } = studentData;
 
-    const result =await pool.query(`INSERT INTO students (user_id,enrollment_number,phone,date_of_birth,gender,adddress,department,semester) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING * `,[user_id,enrollment_number,phone,date_of_birth,gender,address,department,semester]);
+    const result =await pool.query(`INSERT INTO students (user_id,enrollment_number,phone,date_of_birth,gender,address,department,semester) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING * `,[user_id,enrollment_number,phone,date_of_birth,gender,address,department,semester]);
     return result.rows[0];
 };
 
-const getAllStudents = async ()=>{
+const getAllStudents = async (search = "")=>{
     const result = await pool.query(
-        "SELECT * FROM STUDENTS ORDER BY ID DESC"
+        `SELECT * FROM STUDENTS WHERE enrollment_number ILIKE $1 OR department ILIKE $1 ORDER BY id DESC `,[`%${search}%`]
     );
     return result.rows;
 }

@@ -29,7 +29,8 @@ const addStudent = async  (req,res) =>{
 //Get All Students
 const getStudents = async (req,res)=>{
     try{
-        const students =await getAllStudents();
+        const { search = ""} = req.query;
+        const students =await getAllStudents(search);
         res.status(200).json({
             success:true,
             count:students.lenght,
