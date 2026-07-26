@@ -16,9 +16,10 @@ const createStudent = async (studentData)=>{
     return result.rows[0];
 };
 
-const getAllStudents = async (search = "")=>{
+const getAllStudents = async (search = "",page = 1 ,limit = 10)=>{
+    const offset = (page - 1) * limit;
     const result = await pool.query(
-        `SELECT * FROM STUDENTS WHERE enrollment_number ILIKE $1 OR department ILIKE $1 ORDER BY id DESC `,[`%${search}%`]
+        `SELECT * FROM STUDENTS WHERE enrollment_number ILIKE $1 OR department ILIKE $1 ORDER BY id DESC LIMIT $2 OFFSET $3 `,[`%${search}%`,limit,offset]
     );
     return result.rows;
 }

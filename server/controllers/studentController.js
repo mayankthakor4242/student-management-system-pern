@@ -29,10 +29,15 @@ const addStudent = async  (req,res) =>{
 //Get All Students
 const getStudents = async (req,res)=>{
     try{
-        const { search = ""} = req.query;
-        const students =await getAllStudents(search);
+        const { search = "",page = 1,limit = 10} = req.query;
+        const students =await getAllStudents(search,
+            Number(page),
+            Number(limit)
+        );
         res.status(200).json({
             success:true,
+            page : Number(page),
+            limit : Number(limit),
             count:students.lenght,
             students,
         });
