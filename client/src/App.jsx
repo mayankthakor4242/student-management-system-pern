@@ -9,7 +9,7 @@ import Profile from "./pages/Profile";
 
 function App() {
   return (
-    <BrowserRouter>
+   /* <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -18,7 +18,8 @@ function App() {
         <Route path="/students" element={<Students />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter>*/
+    <Dashboard />
   );
 }
 
