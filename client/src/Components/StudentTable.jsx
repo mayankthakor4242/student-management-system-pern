@@ -1,4 +1,6 @@
 const StudentTable = ({student}) =>{
+
+    
     return(
 
          <table border="1" cellPadding="10">
@@ -9,6 +11,7 @@ const StudentTable = ({student}) =>{
                     <th>Phone</th>
                     <th>Department</th>
                     <th>Semester</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +22,12 @@ const StudentTable = ({student}) =>{
                             <td>{student.phone}</td>
                             <td>{student.department}</td>
                             <td>{student.semester}</td>
+                            <td>
+                                <button onClick={()=>onEdit(student)}>Edit</button>
+                            </td>
+                            <td>
+                                <button onClick={()=>onDelete(student.id)}>Delete</button>
+                            </td>
                         </tr>
                     )))}
             </tbody>

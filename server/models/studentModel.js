@@ -34,6 +34,7 @@ const getStudentById = async (id) =>{
 
 const updateStudent = async (id,studentData) =>{
     const {
+        enrollment_number,
         phone,
         date_of_birth,
         gender,
@@ -43,7 +44,7 @@ const updateStudent = async (id,studentData) =>{
     } = studentData;
 
     const result = await pool.query(
-        `UPDATE students SET phone = $1,date_of_birth = $2,gender = $3, address = $4, department = $5,semester = $6 WHERE id = $7 RETURNING *`,[phone,date_of_birth,gender,address,department,semester,id,]
+        `UPDATE students SET enrollment_number=$1,phone = $2,date_of_birth = $3,gender = $4, address = $5, department = $6,semester = $7 WHERE id = $8 RETURNING *`,[enrollment_number,phone,date_of_birth,gender,address,department,semester,id,]
     );
     return result.rows[0];
 };

@@ -43,6 +43,27 @@ const Dashboard = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+  const deleteStudent = async (id) => {
+  try {
+
+    const token = localStorage.getItem("token");
+
+    await api.delete(`/students/${id}`, {
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+
+    });
+
+    fetchStudents();
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+};
 
   if (loading) {
     return <h2>Loading Students...</h2>;
@@ -71,7 +92,10 @@ const Dashboard = () => {
       {students.length === 0 ? (
         <p>No Students Found</p>
       ) : (
-        <StudentTable students={students} />
+        <StudentTable 
+        students={students}
+        onDelete = {deleteStudent}
+           />
       )}
 
     </div>

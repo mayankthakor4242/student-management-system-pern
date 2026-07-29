@@ -7,6 +7,28 @@ const {
 
 } = require("../models/studentModel");
 
+const editStudent = async (req,res) =>{
+    try{
+        const student =await updateStudent(
+            req.params.id,
+            req.body
+        );
+        
+        res.json({
+            success:true,
+            message:"Student Updated Successfully",
+            student,
+
+        });
+
+    }catch(error){
+        res.status(500).json({
+            success:false,
+            message:error.message,
+        })
+    }
+};
+
 //create Student
 const addStudent = async  (req,res) =>{
     try{
