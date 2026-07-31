@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
 import Profile from "./pages/Profile";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
@@ -14,11 +15,19 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
         <Route path="/students" element={<Students />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
+    
     
   );
 }
