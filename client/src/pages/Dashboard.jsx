@@ -188,11 +188,11 @@ const Dashboard = () => {
 
           <div className="mt-8">
 
-           {/* <StudentTable
+           <StudentTable
   students={students}
   onDelete={deleteStudent}
   onEdit={() => {}}
-/> */}
+/>
 
           </div>
 
